@@ -3,7 +3,7 @@ services:
     image: elekrady/fosha_frontend:latest
     container_name: fosha_frontend
     ports:
-      - "80:80"
+      - "${API_URL}:80:80"
     networks:
       - fosha_network
 
@@ -20,13 +20,13 @@ services:
     networks:
       - fosha_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      test: ["CMD", "curl", "-f", "http://${API_URL}:3000"]
       interval: 30s
       timeout: 10s
       retries: 5
 
   mongodb:
-    image: elekrady/fosha_mongo:latest
+    image: mongo:latest
     container_name: fosha_mongo
     ports:
       - "27017:27017"
@@ -34,10 +34,6 @@ services:
       - mongo_data:/data/db
     networks:
       - fosha_network
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-#      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      
     healthcheck:
       test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
       interval: 30s
