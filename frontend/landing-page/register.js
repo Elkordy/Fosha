@@ -4,7 +4,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     const password = document.getElementById('register-password').value;
   
     try {
-      const response = await fetch('http://192.168.81.132:3000/register', {
+      const response = await fetch('http://10.128.0.5:3000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
