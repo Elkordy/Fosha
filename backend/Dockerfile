@@ -1,18 +1,22 @@
-# Dockerfile for Node.js Backend
-FROM node:16
+# Stage 1: Build
+FROM node:18-alpine AS builder
 
-# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --production && npm cache clean --force
 
-# Copy the rest of the application code
 COPY . .
 
-# Expose the port the app runs on
+# Stage 2: Run
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app .
+
+USER node
+
 EXPOSE 3000
 
-# Start the application
 CMD ["npm", "start"]

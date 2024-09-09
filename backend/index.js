@@ -10,9 +10,18 @@ const app = express();
 app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Failed to connect to MongoDB', err));
+app.get('/config', (req, res) => {
+  res.json({ apiUrl: process.env.API_URL });
+});
+
+
+mongoose.connect(process.env.MONGO_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useCreateIndex: true // Added to fix deprecation warning
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch((err) => console.error('Failed to connect to MongoDB', err));
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -36,6 +45,14 @@ const User = mongoose.model('User', userSchema);
 
 app.get('/', (req, res) => {
   res.send('Server is running');
+});
+
+app.get('/login', (req, res) => {
+  res.send('Login page');
+});
+
+app.get('/register', (req, res) => {
+  res.send('Register page');
 });
 
 app.post('/register', async (req, res) => {
