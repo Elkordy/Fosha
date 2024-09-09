@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   console.log('Attempting to login with:', { username, password });
 
   try {
-    const response = await fetch('http://10.128.0.5:3000/login', {
+    const response = await fetch('http://34.46.138.55:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

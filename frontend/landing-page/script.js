@@ -7,7 +7,7 @@ document.getElementById("contact-form").addEventListener("submit", async functio
   console.log('Submitting contact form:', { name, email });
 
   try {
-    const response = await fetch('http://10.128.0.5:3000/submit', {
+    const response = await fetch('http://34.46.138.55:3000/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ document.getElementById("register-form").addEventListener("submit", async functi
   console.log('Registering user:', { username });
 
   try {
-    const response = await fetch('http://10.128.0.5:3000/register', {
+    const response = await fetch('http://34.46.138.55:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
   console.log('Logging in user:', { username });
 
   try {
-    const response = await fetch('http://10.128.0.5:3000/login', {
+    const response = await fetch('http://34.46.138.55:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

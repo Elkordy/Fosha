@@ -20,7 +20,7 @@ services:
     networks:
       - fosha_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://10.128.0.5:3000"]
+      test: ["CMD", "curl", "-f", "http://34.46.138.55:3000"]
       interval: 30s
       timeout: 10s
       retries: 5
